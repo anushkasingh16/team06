@@ -1,3 +1,3 @@
 # Milestone 1
 
-![A wirefram image of how the main homepage looks.](/wireframes/MainPage.png)
+<img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframe-MainPage.png">
