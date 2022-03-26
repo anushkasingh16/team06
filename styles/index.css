@@ -1,0 +1,17 @@
+#navbar {
+    padding: 5px;
+    background-color: rgb(28, 65, 112);  
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(5, 138, 255);
+    font-family: monospace;
+}
+.signup{
+    color: black;
+}
+.textbook-card-img {
+    width: 100%;
+    height: 40vh;
+    object-fit: contain;
+}
