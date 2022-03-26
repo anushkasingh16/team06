@@ -1,0 +1,9 @@
+.input-group{
+    height: min-content;
+    width: 50px;
+}
+.textbook-card-img{
+    width: 20px;
+    /* height: 20%; */
+    object-fit: contain;
+}
