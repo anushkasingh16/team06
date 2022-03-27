@@ -15,11 +15,19 @@
                             <h2>Text Swap</h2>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-primary" id="sign-in" data-bs-toggle="modal" data-bs-target="#signup">Sign In</button>
+                            <button type="button" class="btn btn-primary" id="sign-in" data-bs-toggle="modal" data-bs-target="#signin">Sign In</button>
                         </div>
                     </div>
+                    <div class="input-group">
+                     <div class="input-group-text" id="btnGroupAddon">
+                         <img src="images/search.png">
+                     </div>
+                     <input type="text" class="form-control" id="book-search" placeholder="book, author, ISBN..." aria-label="Input group example" aria-describedby="btnGroupAddon">
+                     <button type="button" class="btn btn-primary" id="search">search</div>
+                         <br>
+                     </div>
                     <!--Modal-->
-                    <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -40,38 +48,62 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-warning">New User? Sign Up Instead.</button>
+                              <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#signup">New User? Sign Up Instead.</button>
                               <button type="button" class="btn btn-primary" onclick="window.location.href='home.html'">Sign In</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      </div>
+                      </div>
+                      <br>
+                  <!--Modal-->
+                  <div class="modal" id="signup" tabindex="-1" role="dialog">
+                     <div class="modal-dialog" role="document">
+                       <div class="modal-content">
+                         <div class="modal-header">
+                           <h5 class="modal-title">Sign Up For Text Swap</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                           </button>
+                         </div>
+                         <div class="modal-body">
+                           <form>
+                              <div class="mb-3">
+                                <label for="emailInput" class="form-label">E-mail address</label>
+                                <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
+                                <div id="emailhelper" class="form-text">Make sure to use your .edu e-mail to verify you are a student.</div>
+                              </div>
+                              <div class="mb-3">
+                                <label for="passWordInput" class="form-label">Choose Your Password</label>
+                                <input type="password" class="form-control" id="password">
+                              </div>
+                              <div class="mb-3">
+                                 <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
+                                 <input type="password" class="form-control" id="passwordConfirm">
+                               </div>
+                               <div class="mb-3">
+                                 <label for="exampleInputPassword1" class="form-label">First Name</label>
+                                 <input type="password" class="form-control" id="passwordConfirm">
+                               </div>
+                               <div class="mb-3">
+                                 <label for="phoneInput" class="form-label">Phone Number</label>
+                                 <input type="number" class="form-control" id="phone">
+                                 <div id="phonehelper" class="form-text">This will not be shared with anyone on the site.</div>
+                               </div>
+                         </div>
+                         <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href='index.html'">Close</button>
+                           <button type="button" class="btn btn-primary" onclick="window.location.href='home.html'">Sign Up AND Log In</button>
+                         </div>
+                       </div>
+                       </div>
+                       </div>
                   <br>
-                  <div class="input-group">
-                    <div class="input-group-text" id="btnGroupAddon">
-                        <img src="images/search.png">
-                    </div>
-                    <input type="text" class="form-control" id="book-search" placeholder="book, author, ISBN..." aria-label="Input group example" aria-describedby="btnGroupAddon">
-                    <button type="button" class="btn btn-primary" id="search">search</div>
-                        <br>
-                    </div>
                   
                 </div>
                 <br>
                 <h4>Trending books...</h4>
-                <!-- <div id="listings" class="container">
-                    
-                    <div class ="row">
-                        <div class="col">
-                            book 1
-                        </div>
-                        <div class="col">
-                            book 2
-                        </div>
-                        <div class="col">
-                            book 3
-                        </div>
-                    </div> -->
                     <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 mt-5">
                         <div class="col">
                            <div class="card text-center">

@@ -60,6 +60,7 @@ Alan Zheng - https://github.com/alan3737
 Anushka Singh - https://github.com/anushkasingh16
 * Main Page
 * Sign Up
+* Combined code from everyone's branches into a consistent UI + CSS formatting
 
 Helton Pongnon - https://github.com/HeltonP
 * Messenger
