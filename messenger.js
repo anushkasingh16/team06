@@ -1,34 +1,58 @@
 // https://getbootstrap.com/docs/5.1/components/button-group/ 
+// for attachments: https://mdbootstrap.com/docs/standard/forms/file/
+// addevent listener for "enter" key to send text
+
+import {day, time} from "./Time.js"
 
 let helton = document.getElementById("Helton");
 let anuskha = document.getElementById("Anushka");
 let alan = document.getElementById("Alan");
 let header = document.getElementById("ChatHeader");
-let nameButtonClass = document.getElementsByClassName("btnradio");
-let messagePage = document.getElementsByClassName("m-b-0");
-let submitButton = document.getElementsByClassName("submit");
+let messagePage = document.getElementById("chatul");
+let submitButton = document.getElementById("send");;
 let messagePlaceHolder = document.getElementById("messagePlaceHolder");
-
 
 function chatSwitch (element) {
     header.innerHTML = element.id;
     messagePlaceHolder.placeholder = "Message " + element.id + "...";
 }
 
-function renderPage () {
-
+function getDate () {
+    const datetime = day() + " @ " + time();
+    return datetime;
 }
 
-function submitText () { // event listener for 
+function renderSent (element) {
+    let clearfix = document.createElement("li");
+    clearfix.className = "clearfix";
+    element.appendChild(clearfix);
+    let data = document.createElement("div");
+    data.className = "message-data text-right";
+    clearfix.appendChild(data);
+    let dateAndTime = document.createElement("span");
+    dateAndTime.className = "message-data-time float-right";
+    dateAndTime.innerHTML = "Sent, " + getDate();
+    data.appendChild(dateAndTime);
+    let mym = document.createElement("div");
+    mym.className = "message other-message float-right";
+    mym.innerText = submitText()
+    clearfix.appendChild(mym);
+    console.log("sent");
+    console.log(submitText());
+}
 
+function renderRecieve (element) { // opposite of renderSent?
+    console.log("recieved")
+}
+
+function submitText () { // event listener for submitted text
+    return messagePlaceHolder.value;
 }
 
 helton.addEventListener("click", () => {chatSwitch(helton)});
 anuskha.addEventListener("click", () => {chatSwitch(anuskha)});
 alan.addEventListener("click", () => {chatSwitch(alan)});
-helton.addEventListener("click", () => {renderPage(helton)});
-anuskha.addEventListener("click", () => {renderPage(anuskha)});
-alan.addEventListener("click", () => {renderPage(alan)});
+submitButton.addEventListener("click", () => {renderSent(messagePage)});
 
 /*
 
