@@ -1,3 +1,5 @@
+import * as http from 'http';
+import * as url from 'url';
 import { readFile, writeFile, access } from 'fs/promises';
 
 const buy = document.getElementById("buy-option");
@@ -20,12 +22,13 @@ let library = {};
 
 async function load() {
     try {
-        const response = await readFile(JSONfile, { encoding: 'utf8' });
-        library = await response.json();
+        const data = await readFile(JSONfile, { encoding: 'utf8' });
+        library = JSON.parse(data);
     } catch (err) {
         library = {};
     }
 }
+
 
 async function update() {
     try {
@@ -36,8 +39,8 @@ async function update() {
     }
 }
 
-export function storeBook(e) {
-    load();
+export async function storeBook(response) {
+    await load();
     let book = {};
     book["option"] = buy.value == ""? sell.value: buy.value;
     book["listlabel"] = listlabel.value; 
@@ -49,19 +52,59 @@ export function storeBook(e) {
     // sets varaible to an int if trade is empty else return string
     library[isbn.value] = book;
     update();
+    response.writeHead(200, { 'Content-Type': 'application/json'});
+    response.write(JSON.stringify(library));
+    response.end();  
+    
 }
 
-export function getBook(value) {
-    load();
-    return value in library? library[value]: null;
+export async function getBook(response, value) {
+    await load();
+    if (value in library) {
+        response.writeHead(200, { 'Content-Type': 'application/json'});
+        response.write(JSON.stringify(library[value]));
+        response.end();  
+    } else {
+        response.writeHead(404, { 'Content-Type': 'application/json'});
+        response.write(JSON.stringify({error: "Book not found"}));
+        response.end();  
+    }
 }
 
-export function deleteBook(value) {
-    load();
-    delete library[value];
-    update();
+export async function deleteBook(response, value) {
+    await load();
+    if (value in library) {
+        delete library[value];
+        update();
+        response.writeHead(200, { 'Content-Type': 'application/json'});
+        response.write(JSON.stringify(library));
+        response.end();  
+    } else {
+        response.writeHead(404, { 'Content-Type': 'application/json'});
+        response.write(JSON.stringify({error: "Book not found"}));
+        response.end();  
+    }
 }
 
 
-button.addEventlistener("click", storeBook());
+async function basicServer(request, response) {
+    // TODO: Implement the server
+    const parsedURL = url.parse(request.url, true);
+    const options = parsedURL.query;
+    const pathname = parsedURL.pathname;
+    const method = request.method;
+    if (method == 'POST' && pathname.startsWith('/storeBook')) {
+        storeBook(response)
+    } else if (method == 'GET' && pathname.startsWith('/getBook')) {
+        getBook(response, options.book);
+    } else if (method == 'DELETE' && pathname.startsWith('/deleteBook')) {
+        deleteBook(response, options.book);
+    }
+   
+  }
+
+  http.createServer(basicServer).listen(3000, () => {
+    console.log('Server started on port 3000');
+  });
+  
 
