@@ -3,6 +3,7 @@ import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import { readFile, writeFile } from 'fs/promises';
+import { createMessage, readMessages} from 'messengercrud.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,16 @@ app.get('/profile', async (request, response) => {
 
 app.get('/messenger', async (request, response) => {
     response.sendFile("/client/messenger.html", {root: __dirname });
+});
+
+app.post('/messenger/create', async (request, response) => {
+    response.sendFile("/client/messenger.html", {root: __dirname });
+    createMessage(request, response);
+});
+
+app.get('/messenger/read', async (request, response) => {
+    response.sendFile("/client/messenger.html", {root: __dirname });
+    readMessages(request, response);
 });
 
 app.get('*', async (request, response) => {

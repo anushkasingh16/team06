@@ -2,7 +2,7 @@
 // for attachments: https://mdbootstrap.com/docs/standard/forms/file/
 // addevent listener for "enter" key to send text
 
-import {day, time} from "./Time.js"
+import {day, time} from "../Time.js"
 
 let helton = document.getElementById("Helton");
 let anuskha = document.getElementById("Anushka");
