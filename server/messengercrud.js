@@ -2,17 +2,11 @@ import * as http from 'http';
 import * as url from 'url';
 import express from 'express';
 import logger from 'morgan';
-import { day, time } from 'Time.js'
 import { readFile, writeFile } from 'fs/promises';
 
 const dataObj = {};
 const JSONFile = 'messenger.json'
 const headerFields = { 'Content-Type': 'application/json' };
-
-function getDate () {
-    const datetime = day() + " @ " + time();
-    return datetime;
-}
 
 async function reload(filename) {
     try {
@@ -58,3 +52,5 @@ async function readMessages (response, from, to) {
         response.status(404).json({ error: 'No Message found' });
     }
 }
+
+export {createMessage, readMessages};
