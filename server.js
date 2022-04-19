@@ -3,7 +3,7 @@ import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import { readFile, writeFile } from 'fs/promises';
-import { createMessage, readMessages} from './messengercrud.js'
+import { createMessage, readMessages} from 'messengercrud.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,28 +16,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
 
 app.get('/home', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
+    response.sendFile("./client/home.html", {root: __dirname });
 });
 
 app.get('/mybooks', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'mybooks.html'));
+    response.sendFile("/client/mybooks.html", {root: __dirname });
 });
 
 app.get('/profile', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'profile.html'));
+    response.sendFile("/client/profile.html", {root: __dirname });
 });
 
 app.get('/messenger', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'messenger.html'));
+    response.sendFile("/client/messenger.html", {root: __dirname });
 });
 
 app.post('/messenger/create', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'messenger.html'));
+    response.sendFile("/client/messenger.html", {root: __dirname });
     createMessage(request, response);
 });
 
 app.get('/messenger/read', async (request, response) => {
-    response.sendFile("./client/messenger.html", {root: __dirname });
+    response.sendFile("/client/messenger.html", {root: __dirname });
     readMessages(request, response);
 });
 
