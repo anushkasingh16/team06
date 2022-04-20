@@ -41,6 +41,15 @@ app.get('/messenger/read', async (request, response) => {
     readMessages(request, response);
 });
 
+app.post('/registerNewUser', async (request, response) => {
+    //TODO: Add User to Database
+});
+
+app.get('/loginRequest', async (request, response) => {
+    //TODO: Login from database
+    response.status(404).json(JSON.stringify({ error: `Not Implemented Yet` }));
+});
+
 app.get('*', async (request, response) => {
     response.status(404).send(`Not found: ${request.path}`);
 });
