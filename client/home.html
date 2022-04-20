@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>  
+        <title>Text Swap</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="styles/home.css" />
+    </head>
+    <body>
+        <div id="navigator">
+            <div class="dropdown">
+                <div class="menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="dropdown-content">
+                    <a href="home">Home</a>
+                    <a href="profile">My Profile</a>
+                    <a href="mybooks">My Textbook</a>
+                    <a href="messenger">Messages</a>
+                    <a href="/">Sign Out</a>
+                </div>
+            </div>
+            <h2>Text Swap</h2>
+            <div class="right-nav">    
+                <a class="notification">
+                    <img id="bell" src="images/bell.png" alt="alert bell" >
+                    <span class="badge">1</span>
+                </a>
+                <div id="profile">Profile</div>
+            </div>
+        </div>
+        <div class="input-group" id="search">
+            <div class="input-group-text" id="btnGroupAddon">
+            <img src="images/search.png">
+            </div>
+            <input type="text" class="form-control" id="book-search" placeholder="book, author, ISBN..." aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <button type="button" class="btn btn-primary" id="search">search</div>
+            <br>
+            </div>
+        <br>
+        
+                <h4>Trending books...</h4>
+                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 mt-5">
+                        <div class="col">
+                           <div class="card text-center">
+                              <h3 class="card-header p-2">AI Textbook</h3>
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item p-1">
+                                    <h5 class="card-text">Artificial Intelligence</h5>
+                                    <h6 class="card-text">A Modern Approach</h6>
+                                 </li>
+                                 <li class="list-group-item p-1">
+                                    <div class="card-text">ISBN: 5724-235-33642-324</div>
+                                 </li>
+                                 <li class="list-group-item p-1">
+                                    <div class="card-text">Author: Stuart Russell</div>
+                                 </li>
+                              </ul>
+                              <div class="embed-responsive embed-responsive-1by1">
+                                 <img class="card-img embed-responsive-item textbook-card-img" src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook.jpg">
+                              </div>
+                              <a href="#" class="stretched-link"></a>
+                              <div class="card-footer py-0">
+                                 <div class="row justify-content-evenly align-items-center m-1">
+                                    <div class="col">
+                                       <div class="card-text">Owned By: Tyler</div>
+                                    </div>
+                                    <div class="col-2 m-2 img-container">
+                                       <h4><i class="bi bi-arrow-left-right"></i></h4>
+                                    </div>
+                                    <div class="col-2 m-2 img-container">
+                                       <h4><i class="bi bi-currency-dollar"></i></h4>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="card text-center">
+                              <h3 class="card-header p-2">Physics Textbook</h3>
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item p-1">
+                                    <h5 class="card-text">Introductory Principles in Physics</h5>
+                                    <h6 class="card-text"></h6>
+                                 </li>
+                                 <li class="list-group-item p-1">
+                                    <div class="card-text">ISBN: 2742-298-32759-034</div>
+                                 </li>
+                                 <li class="list-group-item p-1">
+                                    <div class="card-text">Author: John D. Mays</div>
+                                 </li>
+                              </ul>
+                              <div class="embed-responsive embed-responsive-1by1">
+                                 <img class="card-img embed-responsive-item textbook-card-img" src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook2.jpg">
+                              </div>
+                              <a href="#" class="stretched-link"></a>
+                              <div class="card-footer py-0">
+                                 <div class="row justify-content-evenly align-items-center m-1">
+                                    <div class="col">
+                                       <div class="card-text">Owned By: Tyler</div>
+                                    </div>
+                                    <div class="col-2 m-2 img-container">
+                                       <h4></h4>
+                                    </div>
+                                    <div class="col-2 m-2 img-container">
+                                       <h4><i class="bi bi-currency-dollar"></i></h4>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                </div>
+                </div>
+    </body>
+</html>
