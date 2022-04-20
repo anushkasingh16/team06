@@ -1,8 +1,8 @@
-import * as http from 'http';
-import * as url from 'url';
 import { readFile, writeFile } from 'fs/promises';
 
-let library = {};
+let library = [];
+
+let JSONfile = 'textbook.json';
 
 async function load() {
     try {
@@ -23,19 +23,20 @@ async function update() {
     }
 }
 
-export async function storeBook(response) {
+export async function storeBook(request, response) {
     await load();
+    library.push(request.body);
     update();
     response.writeHead(200, { 'Content-Type': 'application/json'});
     response.write(JSON.stringify(library));
     response.end();  
 }
 
-export async function getBook(response, value) {
+export async function getBook(request, response) {
     await load();
-    if (value in library) {
+    if (request.body in library) {
         response.writeHead(200, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify(library[value]));
+        response.write(JSON.stringify(library));
         response.end();  
     } else {
         response.writeHead(404, { 'Content-Type': 'application/json'});
@@ -44,10 +45,10 @@ export async function getBook(response, value) {
     }
 }
 
-export async function deleteBook(response, value) {
+export async function deleteBook(request, response) {
     await load();
-    if (value in library) {
-        delete library[value];
+    if (request.body in library) {
+        delete library[request.body["name"]];
         update();
         response.writeHead(200, { 'Content-Type': 'application/json'});
         response.write(JSON.stringify(library));
@@ -61,24 +62,6 @@ export async function deleteBook(response, value) {
 
 
 
-async function basicServer(request, response) {
-    // TODO: Implement the server
-    const parsedURL = url.parse(request.url, true);
-    const options = parsedURL.query;
-    const pathname = parsedURL.pathname;
-    const method = request.method;
-    if (method == 'POST' && pathname.startsWith('/storeBook')) {
-        storeBook(response)
-    } else if (method == 'GET' && pathname.startsWith('/getBook')) {
-        getBook(response, options.book);
-    } else if (method == 'DELETE' && pathname.startsWith('/deleteBook')) {
-        deleteBook(response, options.book);
-    }
-   
-  }
 
-  http.createServer(basicServer).listen(3000, () => {
-    console.log('Server started on port 3000');
-  });
-  
+
 
