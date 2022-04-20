@@ -1,193 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>  
-        <title>Text Swap</title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="styles/index.css" />
-    </head>
-    <body>
-        <div id="navbar">
-                <div class="container">
-                    <div class = "row">
-                        <div class="col-10">
-                            <h2>Text Swap</h2>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary" id="sign-in" data-bs-toggle="modal" data-bs-target="#signin">Sign In</button>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                     <div class="input-group-text" id="btnGroupAddon">
-                         <img src="images/search.png">
-                     </div>
-                     <input type="text" class="form-control" id="book-search" placeholder="book, author, ISBN..." aria-label="Input group example" aria-describedby="btnGroupAddon">
-                     <button type="button" class="btn btn-primary" id="search">search</div>
-                         <br>
-                     </div>
-                    <!--Modal-->
-                    <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Sign Into Text Swap</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                      <label for="exampleInputEmail1" class="form-label">E-mail address</label>
-                                      <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
-                                      <div id="emailhelper" class="form-text">Enter your .edu e-mail to verify you are a student.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                                      <input type="password" class="form-control" id="password">
-                                    </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#signup">New User? Sign Up Instead.</button>
-                              <button type="button" class="btn btn-primary" onclick="window.location.href='home'">Sign In</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                      </div>
-                      <br>
-                  <!--Modal-->
-                  <div class="modal" id="signup" tabindex="-1" role="dialog">
-                     <div class="modal-dialog" role="document">
-                       <div class="modal-content">
-                         <div class="modal-header">
-                           <h5 class="modal-title">Sign Up For Text Swap</h5>
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="window.location.href='/'" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                           <form class="needs-validation" novalidate>
-                              <div class="mb-3">
-                                <label for="emailInput" class="form-label">E-mail address</label>
-                                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required>
-                                <div id="emailhelper" class="form-text">Make sure to use a umass associated email address for verification.</div>
-                              </div>
-                              <div class="mb-3">
-                                 <label for="inputID" class="form-label">SPIRE ID: </label>
-                                 <input type="text" class="form-control" id="inputID" required>
-                               </div>
-                              <div class="mb-3">
-                                <label for="passwordInput" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="passwordInput" required>
-                              </div>
-                              <div class="mb-3">
-                                 <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
-                                 <input type="password" class="form-control" id="passwordInputConfirm" required>
-                               </div>
-                               <div class="mb-3">
-                                 <label for="nameInput" class="form-label">Full Name</label>
-                                 <input type="text" class="form-control" id="nameInput" required>
-                               </div>
-                               <div class="mb-3">
-                                 <label for="phoneInput" class="form-label">Phone Number (Optional)</label>
-                                 <input type="number" class="form-control" id="phone">
-                                 <div id="phoneHelper" class="form-text">This will not be shared with anyone on the site without your permission.</div>
-                               </div>
-                               <div class="mb-3">
-                                 <label for="addressInput" class="form-label">Address / Dorm Hall (Optional)</label>
-                                 <input type="text" class="form-control" id="addressInput">
-                                 <div id="addressHelper" class="form-text">This will not be shared with anyone on the site without your permission.</div>
-                               </div>
-                               <div class="mb-3">
-                                 <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                                 <label class="form-check-label" for="gridCheck">
-                                   I agree to the Terms of Service and confirm that I am a UMass student, staff, or alumni.
-                                 </label>
-                               </div>
-                         </div>
-                         <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href='/'">Close</button>
-                           <button type="button" class="btn btn-primary" onclick="window.location.href='home'">Sign Up</button>
-                         </div>
-                       </div>
-                       </div>
-                       </div>
-                  <br>
-                  
-                </div>
-                <br>
-                <h4>Trending books...</h4>
-                    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 mt-5">
-                        <div class="col">
-                           <div class="card text-center">
-                              <h3 class="card-header p-2">AI Textbook</h3>
-                              <ul class="list-group list-group-flush">
-                                 <li class="list-group-item p-1">
-                                    <h5 class="card-text">Artificial Intelligence</h5>
-                                    <h6 class="card-text">A Modern Approach</h6>
-                                 </li>
-                                 <li class="list-group-item p-1">
-                                    <div class="card-text">ISBN: 5724-235-33642-324</div>
-                                 </li>
-                                 <li class="list-group-item p-1">
-                                    <div class="card-text">Author: Stuart Russell</div>
-                                 </li>
-                              </ul>
-                              <div class="embed-responsive embed-responsive-1by1">
-                                 <img class="card-img embed-responsive-item textbook-card-img" src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook.jpg">
-                              </div>
-                              <a href="#" class="stretched-link"></a>
-                              <div class="card-footer py-0">
-                                 <div class="row justify-content-evenly align-items-center m-1">
-                                    <div class="col">
-                                       <div class="card-text">Owned By: Tyler</div>
-                                    </div>
-                                    <div class="col-2 m-2 img-container">
-                                       <h4><i class="bi bi-arrow-left-right"></i></h4>
-                                    </div>
-                                    <div class="col-2 m-2 img-container">
-                                       <h4><i class="bi bi-currency-dollar"></i></h4>
-                                    </div>
-                                 </div>
-                              </div>
+
+<head>
+   <title>Text Swap</title>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   <script src="./index.js" type="module"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="styles/index.css" />
+</head>
+
+<body>
+   <div id="navbar">
+      <div class="container">
+         <div class="row">
+            <div class="col-10">
+               <h2>Text Swap</h2>
+            </div>
+            <div class="col">
+               <button type="button" class="btn btn-primary" id="sign-in" data-bs-toggle="modal"
+                  data-bs-target="#signin">Sign In</button>
+            </div>
+         </div>
+         <div class="input-group">
+            <div class="input-group-text" id="btnGroupAddon">
+               <img src="images/search.png">
+            </div>
+            <input type="text" class="form-control" id="book-search" placeholder="book, author, ISBN..."
+               aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <button type="button" class="btn btn-primary" id="search">search
+         </div>
+         <br>
+      </div>
+      <!--Modal-->
+      <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sign Into Text Swap</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <form id="login-form">
+                  <div class="modal-body">
+                     <form>
+                        <div class="mb-3">
+                           <label for="exampleInputEmail1" class="form-label">E-mail address</label>
+                           <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
+                           <div id="emailhelper" class="form-text">Enter your .edu e-mail to verify you are a student.
                            </div>
                         </div>
-                        <div class="col">
-                           <div class="card text-center">
-                              <h3 class="card-header p-2">Physics Textbook</h3>
-                              <ul class="list-group list-group-flush">
-                                 <li class="list-group-item p-1">
-                                    <h5 class="card-text">Introductory Principles in Physics</h5>
-                                    <h6 class="card-text"></h6>
-                                 </li>
-                                 <li class="list-group-item p-1">
-                                    <div class="card-text">ISBN: 2742-298-32759-034</div>
-                                 </li>
-                                 <li class="list-group-item p-1">
-                                    <div class="card-text">Author: John D. Mays</div>
-                                 </li>
-                              </ul>
-                              <div class="embed-responsive embed-responsive-1by1">
-                                 <img class="card-img embed-responsive-item textbook-card-img" src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook2.jpg">
-                              </div>
-                              <a href="#" class="stretched-link"></a>
-                              <div class="card-footer py-0">
-                                 <div class="row justify-content-evenly align-items-center m-1">
-                                    <div class="col">
-                                       <div class="card-text">Owned By: Tyler</div>
-                                    </div>
-                                    <div class="col-2 m-2 img-container">
-                                       <h4></h4>
-                                    </div>
-                                    <div class="col-2 m-2 img-container">
-                                       <h4><i class="bi bi-currency-dollar"></i></h4>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                        <div class="mb-3">
+                           <label for="exampleInputPassword1" class="form-label">Password</label>
+                           <input type="password" class="form-control" id="password">
                         </div>
-                     </div>
-                </div>
-                </div>
-    </body>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signup">New
+                        User? Sign Up Instead.</button>
+                     <button type="button" class="btn btn-primary" onclick="window.location.href='home'">Sign In</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   <br>
+   <!--Modal-->
+   <div class="modal" id="signup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Sign Up For Text Swap</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="window.location.href='/'"
+                  aria-label="Close"></button>
+            </div>
+            <form id="signup-form">
+               <div class="modal-body">
+                  <div class="mb-3">
+                     <label for="emailInput" class="form-label">E-mail address</label>
+                     <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required>
+                     <div id="emailhelper" class="form-text">Make sure to use a umass associated email address for
+                        verification.</div>
+                  </div>
+                  <div class="mb-3">
+                     <label for="inputID" class="form-label">SPIRE ID: </label>
+                     <input type="number" class="form-control" id="inputID" required>
+                  </div>
+                  <div class="mb-3">
+                     <label for="passwordInput" class="form-label">Password</label>
+                     <input type="password" class="form-control" id="passwordInput" required>
+                  </div>
+                  <div class="mb-3">
+                     <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
+                     <input type="password" class="form-control" id="passwordInputConfirm" required>
+                  </div>
+                  <div class="mb-3">
+                     <label for="nameInput" class="form-label">Full Name</label>
+                     <input type="text" class="form-control" id="nameInput" required>
+                  </div>
+                  <div class="mb-3">
+                     <label for="phoneInput" class="form-label">Phone Number (Optional)</label>
+                     <input type="number" class="form-control" id="phone">
+                     <div id="phoneHelper" class="form-text">This will not be shared with anyone on the site without
+                        your permission.</div>
+                  </div>
+                  <div class="mb-3">
+                     <label for="addressInput" class="form-label">Address / Dorm Hall (Optional)</label>
+                     <input type="text" class="form-control" id="addressInput">
+                     <div id="addressHelper" class="form-text">This will not be shared with anyone on the site without
+                        your permission.</div>
+                  </div>
+                  <div class="mb-3">
+                     <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                     <label class="form-check-label" for="gridCheck">
+                        I agree to the Terms of Service and confirm that I am a UMass student, staff, or alumni.
+                     </label>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                     onclick="window.location.href='/'">Close</button>
+                  <button type="button" class="btn btn-primary" id="btnSignUp">Sign Up</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <br>
+
+   </div>
+   <br>
+   <h4>Trending books...</h4>
+   <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 mt-5">
+      <div class="col">
+         <div class="card text-center">
+            <h3 class="card-header p-2">AI Textbook</h3>
+            <ul class="list-group list-group-flush">
+               <li class="list-group-item p-1">
+                  <h5 class="card-text">Artificial Intelligence</h5>
+                  <h6 class="card-text">A Modern Approach</h6>
+               </li>
+               <li class="list-group-item p-1">
+                  <div class="card-text">ISBN: 5724-235-33642-324</div>
+               </li>
+               <li class="list-group-item p-1">
+                  <div class="card-text">Author: Stuart Russell</div>
+               </li>
+            </ul>
+            <div class="embed-responsive embed-responsive-1by1">
+               <img class="card-img embed-responsive-item textbook-card-img"
+                  src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook.jpg">
+            </div>
+            <a href="#" class="stretched-link"></a>
+            <div class="card-footer py-0">
+               <div class="row justify-content-evenly align-items-center m-1">
+                  <div class="col">
+                     <div class="card-text">Owned By: Tyler</div>
+                  </div>
+                  <div class="col-2 m-2 img-container">
+                     <h4><i class="bi bi-arrow-left-right"></i></h4>
+                  </div>
+                  <div class="col-2 m-2 img-container">
+                     <h4><i class="bi bi-currency-dollar"></i></h4>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col">
+         <div class="card text-center">
+            <h3 class="card-header p-2">Physics Textbook</h3>
+            <ul class="list-group list-group-flush">
+               <li class="list-group-item p-1">
+                  <h5 class="card-text">Introductory Principles in Physics</h5>
+                  <h6 class="card-text"></h6>
+               </li>
+               <li class="list-group-item p-1">
+                  <div class="card-text">ISBN: 2742-298-32759-034</div>
+               </li>
+               <li class="list-group-item p-1">
+                  <div class="card-text">Author: John D. Mays</div>
+               </li>
+            </ul>
+            <div class="embed-responsive embed-responsive-1by1">
+               <img class="card-img embed-responsive-item textbook-card-img"
+                  src="https://raw.githubusercontent.com/anushkasingh16/team06/tyler/textbook2.jpg">
+            </div>
+            <a href="#" class="stretched-link"></a>
+            <div class="card-footer py-0">
+               <div class="row justify-content-evenly align-items-center m-1">
+                  <div class="col">
+                     <div class="card-text">Owned By: Tyler</div>
+                  </div>
+                  <div class="col-2 m-2 img-container">
+                     <h4></h4>
+                  </div>
+                  <div class="col-2 m-2 img-container">
+                     <h4><i class="bi bi-currency-dollar"></i></h4>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   </div>
+</body>
+
 </html>

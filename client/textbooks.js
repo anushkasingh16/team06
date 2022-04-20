@@ -54,11 +54,13 @@ function addNewTextbook() {
         if(!(toTrade.classList.contains('active')||toSell.classList.contains('active'))){
             alert("You must select if you want to trade and/or sell your textbook");
             allValid = false;
+            return;
         }
         if(toSell.classList.contains('active')){
             // TODO Milestone 2: Input Validation for currency
         }
         let modal = bootstrap.Modal.getInstance(document.getElementById("newTextbookModal"),{});
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop =>{backdrop.remove();});
         modal.hide();
 
         if(document.getElementById("sell-buy-text").innerHTML.includes('Buy')){
