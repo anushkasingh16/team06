@@ -26,8 +26,15 @@ async function signUpButton() {
             return;
         }
 
-        // Check for pre-existing login data for this individual
-        alert("Successfully Signed Up!");
+        const userExists = await checkForExistingUser(email.value);
+        if(userExists){
+            alert("Email already in use!");
+            return;
+        }
+
+        let userObj = {"email":email.value,"name":fullName.value,"id":spireID.value,"address":address.value,"phone":phoneNum.value,"swaps":0,"listings":0,"rating":0};
+
+        await signUpUser(userObj);
     }else{
         alert("You must fill out all required fields!");
     }
@@ -35,8 +42,8 @@ async function signUpButton() {
 
 async function checkForExistingUser(email){
     const body = {email: email};
-    const response = await fetch(`/existingUser`, {
-        method: 'GET',
+    const response = await fetch(`./existingUser`, {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -44,5 +51,18 @@ async function checkForExistingUser(email){
         body: JSON.stringify(body)
     });
     const data = await response.json();
-    return data[exists];
+    return data["exists"];
+}
+
+async function signUpUser(userObj){
+    const response = await fetch(`./registerNewUser`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userObj)
+    });
+    const data = await response.json();
+    return data;
 }

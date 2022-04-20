@@ -4,6 +4,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import { readFile, writeFile } from 'fs/promises';
 import { createMessage, readMessages} from './messengercrud.js'
+import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,11 +43,19 @@ app.get('/messenger/read', async (request, response) => {
     readMessages(request, response);
 });
 
-app.post('/registerNewUser', async (request, response) => {
-    //TODO: Add User to Database
+app.post('/existingUser', async (request, response) => {
+    userExists(response, request.body);
 });
 
-app.get('/loginRequest', async (request, response) => {
+app.post('/getUser', async (request, response) => {
+    readProfile(response, request.body);
+});
+
+app.post('/registerNewUser', async (request, response) => {
+    createProfile(response,request.body);
+});
+
+app.post('/loginRequest', async (request, response) => {
     //TODO: Login from database
     response.status(404).json(JSON.stringify({ error: `Not Implemented Yet` }));
 });
