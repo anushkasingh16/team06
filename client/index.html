@@ -66,28 +66,43 @@
                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="window.location.href='/'" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                           <form>
+                           <form class="needs-validation" novalidate>
                               <div class="mb-3">
                                 <label for="emailInput" class="form-label">E-mail address</label>
-                                <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
-                                <div id="emailhelper" class="form-text">Make sure to use your .edu e-mail to verify you are a student.</div>
+                                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required>
+                                <div id="emailhelper" class="form-text">Make sure to use a umass associated email address for verification.</div>
                               </div>
                               <div class="mb-3">
-                                <label for="passWordInput" class="form-label">Choose Your Password</label>
-                                <input type="password" class="form-control" id="password">
+                                 <label for="inputID" class="form-label">SPIRE ID: </label>
+                                 <input type="text" class="form-control" id="inputID" required>
+                               </div>
+                              <div class="mb-3">
+                                <label for="passwordInput" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="passwordInput" required>
                               </div>
                               <div class="mb-3">
                                  <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
-                                 <input type="password" class="form-control" id="passwordConfirm">
+                                 <input type="password" class="form-control" id="passwordInputConfirm" required>
                                </div>
                                <div class="mb-3">
-                                 <label for="exampleInputPassword1" class="form-label">First Name</label>
-                                 <input type="password" class="form-control" id="passwordConfirm">
+                                 <label for="nameInput" class="form-label">Full Name</label>
+                                 <input type="text" class="form-control" id="nameInput" required>
                                </div>
                                <div class="mb-3">
-                                 <label for="phoneInput" class="form-label">Phone Number</label>
+                                 <label for="phoneInput" class="form-label">Phone Number (Optional)</label>
                                  <input type="number" class="form-control" id="phone">
-                                 <div id="phonehelper" class="form-text">This will not be shared with anyone on the site.</div>
+                                 <div id="phoneHelper" class="form-text">This will not be shared with anyone on the site without your permission.</div>
+                               </div>
+                               <div class="mb-3">
+                                 <label for="addressInput" class="form-label">Address / Dorm Hall (Optional)</label>
+                                 <input type="text" class="form-control" id="addressInput">
+                                 <div id="addressHelper" class="form-text">This will not be shared with anyone on the site without your permission.</div>
+                               </div>
+                               <div class="mb-3">
+                                 <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                 <label class="form-check-label" for="gridCheck">
+                                   I agree to the Terms of Service and confirm that I am a UMass student, staff, or alumni.
+                                 </label>
                                </div>
                          </div>
                          <div class="modal-footer">

@@ -14,6 +14,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
+app.use(express.static('client'));
 
 app.get('/home', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
