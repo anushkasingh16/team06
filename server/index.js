@@ -23,9 +23,7 @@ app.use(express.static('client'));
 app.get('/home', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
 });
-app.get('/', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
-});
+
 app.get('/mybooks', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'mybooks.html'));
 });
