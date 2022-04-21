@@ -9,7 +9,7 @@ async function load() {
         const data = await readFile(JSONfile, { encoding: 'utf8' });
         library = JSON.parse(data);
     } catch (err) {
-        library = {};
+        library = [];
     }
 }
 
