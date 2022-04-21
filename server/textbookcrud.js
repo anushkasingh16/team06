@@ -47,17 +47,17 @@ export async function getBook(request, response) {
 
 export async function deleteBook(request, response) {
     await load();
-    if (request.body in library) {
-        delete library[request.body["title"]];
-        update();
-        response.writeHead(200, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify(library));
-        response.end();  
-    } else {
-        response.writeHead(404, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify({error: "Book not found"}));
-        response.end();  
+    for(let i = 0; i < library.length; i++) {
+        if(library[i]["title"] === request.body["title"]) {
+            library.splice(i, 1);
+            update();
+            response.writeHead(200, { 'Content-Type': 'application/json'});
+            response.write(JSON.stringify(library));
+            response.end();  
+
+        }
     }
+
 }
 
 
