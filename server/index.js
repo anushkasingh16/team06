@@ -5,9 +5,9 @@ import {fileURLToPath} from 'url';
 import { readFile, writeFile } from 'fs/promises';
 import { createMessage, readMessages} from './messengercrud.js'
 import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
-import { storeBook } from '../textbooks.js';
-import { getBook } from '../textbooks.js';
-import { deleteBook } from '../textbooks.js';
+import { storeBook } from './textbookcrud.js';
+import { getBook } from './textbookcrud.js';
+import { deleteBook } from './textbookcrud.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +18,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
-app.use(express.static('client'));
+
 
 app.get('/home', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
@@ -40,7 +40,9 @@ app.post('/messenger/create', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'messenger.html'));
     createMessage(request, response);
 });
-
+app.get('/', async (request, response) => {
+    response.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
+});
 app.get('/messenger/read', async (request, response) => {
     response.sendFile("./client/messenger.html", {root: __dirname });
     readMessages(request, response);
