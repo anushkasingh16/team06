@@ -4,18 +4,35 @@
 
 ### Application Name: Text Swap
 
-### Innovative Idea
-
-Our web app lets us connect people on campus who are looking for certain textbooks with people hoping to buy/swap for them! We let users make listings and tell us which books they need, and then we match them with other students on campus who are looking to sell or swap those books. Once the users are matched, our application helps them set up a meeting time and place to swap via messaging. The app can also let you split the cost of textbooks if you and a friend want to share a textbook for a class, or even perform swaps with multiple people so everyone can get the textbooks they need.
-
 ### API Reference  
 
 The base URL to send all API requests is https://umasstextswap.herokuapp.com/ (Heroku Deployed Website)
 
 Our API follows RESTful conventions and our current operations are performed using GET, POST and DELETE.
 
+In the file './server/index.js', we lay out our server API endpoints and they are as follows:
 
-### Screenshots:
+GET operations:
+* '/home' - Takes us to the Home Page after log in
+* '/mybooks' - Shows us the listing of our books
+* '/profile' - Shows us the current user's profile
+* '/messenger' - Takes us to the user's message dashboard
+* '/messenger/read' - Shows us the user's chats
+* '/getBook' - Gets the specifics of a book
+
+DELETE operations:
+* '/deleteBook' - Deletes a book lsiting
+
+POST operations:
+* '/messenger/create' - Allows us to POST a new message
+* '/existingUser' - For Login authentication 
+* '/getUser' - For User Profile 
+* '/registerNewUser' - For Sign Up
+* '/loginRequest' - For validating Login from user database 
+* '/storeBook' - Allows us to store new listing
+
+
+### Screenshots of our Front-End:
 
 Users will have to sign up on the website to start making a profile. Only emails ending with umass.edu will be allowed to sign up so only students have access to the app. Other information included with a user's profile are the textbooks they are listing, their username, the total number of textbook swaps they have done as well as options to include their phone number and address to help conduct trades with people.
 
@@ -25,49 +42,46 @@ Additionally, if users are not swapping but only want to buy a book, we also hav
 
 ### The flow of our website starts with with the **main page** as shown below:
 
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframe-MainPage.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/index.jpg">
 
 ### Once you are at the **main page**, the user can **sign in/log in** as shown below:
 
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-SignUpForm.png">
-
-<img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-LoginPopup.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/login.jpg">
 
 ### After the user logs in/ signs up we take them to the **home page** as shown below:
 
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-HomePage.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/home.jpg">
 
 ### At the **home page**, there are a few componets that build up our user interface. The features are listed as follows:
 
 #### User Profile 
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-Profile.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-Profile.png">
 
 #### Messages (For interacting with other users you want to sell/swap books with.)
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-Messages.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/messages.jpg">
 
-#### MyTextbooks (Allows you to see what books you currently have listed.)
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-MyTextbooks.png"> -->
 
 #### NewListing (Allows you to add new books to **MyTextbooks**.)
-<!-- <img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-NewListing.png"> -->
+<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/newlisting.jpg">
 
 <hr>
 
 ### Team Overview with Work Division
 
 Tyler Viarengo - https://github.com/borisshoes
-* My Textbooks Page 
-* New Listing Forms
-* Wireframes
+* Layout of APIs
+* Server Webpage Endpoints
+* User Profile API
 
 Alan Zheng - https://github.com/alan3737
-* Book Listing CRUD operations
+* CRUD operations for Textbook Listing 
+* CRUD oeprations for Profiles
 
 Anushka Singh - https://github.com/anushkasingh16
-* Heroku Deployment
-* Sign Up
-* Combined code from everyone's branches into a consistent UI + CSS formatting
+* Sign Up/Login 
+* Heroku Deployment and debugging Express routes
+* Documentation 
 
 Helton Pongnon - https://github.com/HeltonP
-* Messenger Sending & Receiving 
-* Profile Page
+* Rendering Texts for Messenger UI
+* Messenger API/associated HTML 
