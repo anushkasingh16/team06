@@ -25,7 +25,6 @@ addbutton.addEvenetlistenr('click', async (e) => {
     book["edition"] = edition.value;
     book["transaction"] = trade.value == ""? sellamount.value: trade.value;
     // sets varaible to an int if trade is empty else return string
-    library[isbn.value] = book;
     await fetch('/storeBook', {
         method: 'POST',
         header: {
