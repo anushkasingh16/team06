@@ -2,7 +2,6 @@ import express from 'express';
 import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import { readFile, writeFile } from 'fs/promises';
 import { createMessage, readMessages} from './messengercrud.js'
 import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
 import { storeBook } from './textbookcrud.js';
