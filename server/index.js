@@ -2,7 +2,6 @@ import express from 'express';
 import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import { readFile, writeFile } from 'fs/promises';
 import { createMessage, readMessages} from './messengercrud.js'
 import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
 import { storeBook, getBook, deleteBook } from './textbookcrud.js';
@@ -11,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

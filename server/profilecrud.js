@@ -90,6 +90,7 @@ async function readProfile() {
 }
 async function userExists() {
     
+    
 }
 
 
