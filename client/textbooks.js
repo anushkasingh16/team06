@@ -14,7 +14,6 @@ const toSell = document.getElementById("btn-to-sell");
 const sellAmt = document.getElementById("input-sell-amt");
 
 
-
 btnAdd.addEventListener("click", addNewTextbook);
 buyOption.addEventListener("click", setFormBuy);
 sellOption.addEventListener("click", setFormSell);

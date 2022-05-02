@@ -5,9 +5,7 @@ import {fileURLToPath} from 'url';
 import { readFile, writeFile } from 'fs/promises';
 import { createMessage, readMessages} from './messengercrud.js'
 import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
-import { storeBook } from './textbookcrud.js';
-import { getBook } from './textbookcrud.js';
-import { deleteBook } from './textbookcrud.js';
+import { storeBook, getBook, deleteBook } from './textbookcrud.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

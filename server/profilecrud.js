@@ -78,4 +78,19 @@ async function userExists(response,data){
 }
 
 
+async function createProfile() {
+
+}
+
+async function updateProfile() {
+    
+}
+async function readProfile() {
+    
+}
+async function userExists() {
+    
+}
+
+
 export { createProfile, updateProfile, readProfile, userExists };

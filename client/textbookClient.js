@@ -12,10 +12,12 @@ const sellamount = document.getElementById("input-sell-amt");
 const imageUpload = document.getElementById("image-upload");
 
 
-const addbutton = document.getElementsId("btn-add-listing");
-const deletebutton = document.createElementId("btn-delete-listing");
+const addbutton = document.getElementById("btn-add-listing");
+const deletebutton = document.getElementById("btn-delete-listing");
 
-addbutton.addEvenetlistenr('click', async (e) => {
+
+addbutton.addEventListener('click', async (e) => {
+    console.log("adding book");
     let book = {};
     book["option"] = buy.value == ""? sell.value: buy.value;
     book["listlabel"] = listlabel.value; 
@@ -33,12 +35,19 @@ addbutton.addEvenetlistenr('click', async (e) => {
     });
 });
 
-deletebutton.addEvenetlistenr('click', async(e) => {
+deletebutton.addEventListener('click', async(e) => {
+    let book = {};
+    book["isbn"] = isbn.value;
+    console.log("deleting book")
+    let modal = bootstrap.Modal.getInstance(document.getElementById("deleteTextbookModal"),{});
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop =>{backdrop.remove();});
+    modal.hide();
     await fetch('/deleteBook', {
         method: 'DELETE',
-        body: {"title": title.value},
+        body: book,
     });
 });
+
 
 
 

@@ -48,7 +48,7 @@ export async function getBook(request, response) {
 export async function deleteBook(request, response) {
     await load();
     for(let i = 0; i < library.length; i++) {
-        if(library[i]["title"] === request.body["title"]) {
+        if(library[i]["isbn"] === request.body["isbn"]) {
             library.splice(i, 1);
             update();
             response.writeHead(200, { 'Content-Type': 'application/json'});
