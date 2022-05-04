@@ -3,7 +3,7 @@ import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import { createMessage, readMessages} from './messengercrud.js'
-import { createProfile, updateProfile, readProfile, userExists } from './profilecrud.js';
+import { ProfileDatabase } from './profilecrud.js';
 import { storeBook, getBook, deleteBook } from './textbookcrud.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +15,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
+
+const profdb = new Database(process.env.DATABASE_URL);
+await profdb.connect();
+
 
 
 app.get('/home', async (request, response) => {
@@ -46,15 +50,31 @@ app.get('/messenger/read', async (request, response) => {
 });
 
 app.post('/existingUser', async (request, response) => {
-    userExists(response, request.body);
+    try {
+        const res = await profdb.userExists(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.post('/getUser', async (request, response) => {
-    readProfile(response, request.body);
+    try {
+        const res = await profdb.readProfile(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
+    
 });
 
 app.post('/registerNewUser', async (request, response) => {
-    createProfile(response,request.body);
+    try {
+        const res = await profdb.createProfile(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.post('/loginRequest', async (request, response) => {

@@ -89,28 +89,30 @@ export class ProfileDatabase {
     }
   
     async connect() {
-      this.client = await MongoClient.connect(this.dburl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverApi: ServerApiVersion.v1,
-      });
+        this.client = await MongoClient.connect(this.dburl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverApi: ServerApiVersion.v1,
+        });
   
       // Get the database.
-      this.db = this.client.db('textswap');
+        this.db = this.client.db('textswap');
   
       // Init the database.
-      await this.init();
+        await this.init();
     }
   
     async init() {
-      this.collection = this.db.collection('userData');
+        this.collection = this.db.collection('userData');
     }
   
     async close() {
-      this.client.close();
+        this.client.close();
     }
 
     async createProfile(response, data) {
+
+        // might not needs these if statements because of required in the profile.html when they sign up
         if(data["email"] === undefined){
             response.status(400).json(JSON.stringify({ error: `Email required` }));
         }else if(data["name"] === undefined){
@@ -120,18 +122,15 @@ export class ProfileDatabase {
         }else{
             const res = await this.collection.find({email: data["email"]}, function(err, col){
                 if(col.length === 0 && err){
-                    response.status(200).json({ error: `Email In Use` });
+                    await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phoneNum"], address: data["address"]});
+                    response.status(200).json(data);  
                 } else {
-                    await this.collection.insertOne({email:data["email"], name:data["name"], id:data["id"]});
-                    response.status(200).json(data);    
+                    response.status(400).json({ error: `Email In Use` });  
                 }
             });
         }
     }
-    
-    async updateProfile(response, data) {
-    }
-    
+
     async readProfile(response, data) {
         const res = await this.collection.find({email: data["email"]});
         response.status(200).json(res);              
@@ -140,13 +139,17 @@ export class ProfileDatabase {
     async userExists(response, data) {
         const res = await this.collection.find({email: data["email"]}, function(err, col){
             if(col.length === 0 && err){
-                response.status(200).json({ exists: false });
+                response.status(200).json({ exist: false });
             } else {
-                response.status(200).json({ exists: true });                
+                response.status(200).json({ exist: true });                
             }
-          });
+        });
         return res;        
     }    
+    //todo: made edits to profile
+    async updateProfile(response, data) {
+        return;
+    }
   
   }
 
