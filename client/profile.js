@@ -18,9 +18,6 @@ const signUp = document.getElementById("btnSignUp");
 const signIn = document.getElementById("btnSignIn");
 
 
-const userEmail = "hpongnon@umass.edu"; // Hard Code user until we get login finished
-//const userData = await getUser(userEmail);
-
 
 // swap.innerText = `Completed Swaps: ${userData["swaps"]}`;
 // list.innerText = `Current Lisitngs: ${userData["listings"]}`;
@@ -102,6 +99,14 @@ signIn.addEventListener('click', async () => {
 })
 
 
+//example
+await createUser("abcds@umass.edu", "123456789", "john", "444111222", "123 amherst");
+const userData = await getUser("abcds@umass.edu");
+profName.innerText = `Name: ${userData["name"]}`;
+email.innerText = `Email: ${userData["email"]}`;
+id.innerText = `Spire ID: ${userData["_id"]}`;
+addr.innerText = `Current Address / Dorm Hall: ${userData["address"]}`;
+phone.innerText = `Phone Number: ${userData["number"]}`;
 
 
 
