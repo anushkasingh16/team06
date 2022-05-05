@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
 
-const profdb = new Database(process.env.DATABASE_URL);
+const profdb = new ProfileDatabase(process.env.DATABASE_URL);
 await profdb.connect();
 
 

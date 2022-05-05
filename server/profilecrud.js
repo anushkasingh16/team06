@@ -120,9 +120,9 @@ export class ProfileDatabase {
         }else if(data["id"] === undefined){
             response.status(400).json(JSON.stringify({ error: `ID required` }));
         }else{
-            const res = await this.collection.find({email: data["email"]}, function(err, col){
+            const res = await this.collection.find({email: data["email"]}, async function(err, col){
                 if(col.length === 0 && err){
-                    await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phoneNum"], address: data["address"]});
+                    await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phone"], address: data["address"]});
                     response.status(200).json(data);  
                 } else {
                     response.status(400).json({ error: `Email In Use` });  
@@ -146,10 +146,6 @@ export class ProfileDatabase {
         });
         return res;        
     }    
-    //todo: made edits to profile
-    async updateProfile(response, data) {
-        return;
-    }
   
   }
 

@@ -44,20 +44,20 @@ async function getUser(email){
 }
 
 // when a user create an account, a new user is created
-async function createUser(email, id, name, phoneNum, address) {
+async function createUser(email, id, name, phone, address) {
     const response = await fetch ('/registerNewUser', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'           
         },
-        body: JSON.stringify({"email": email, "id": id, "name": name, "phoneNum": phoneNum, "address": address}),
+        body: JSON.stringify({"email": email, "id": id, "name": name, "phone": phone, "address": address}),
     });
     const data = await response.json();
     return data;
 }
 
-// when a user creates / sign in an account, check if user already made an similar account
+// when a user creates / sign in an account the function would check if user already made an similar account
 async function userExist(email) {
     const response = await fetch('/existingUser', {
         method: 'POST',
@@ -70,11 +70,6 @@ async function userExist(email) {
     const data = await response.json();
     return data;
 }
-
-async function updateUser() {
-    return;
-}
-
 
 
 signUp.addEventListener('click', async () => {
