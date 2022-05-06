@@ -5,6 +5,7 @@ import {fileURLToPath} from 'url';
 import { MessengerDatabase } from './messengercrud.js'
 import { ProfileDatabase } from './profilecrud.js';
 import { storeBook, getBook, deleteBook } from './textbookcrud.js';
+import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
