@@ -23,8 +23,6 @@ await profdb.connect();
 const mdb = new MessengerDatabase(process.env.DATABASE_URL);
 await mdb.connect();
 
-
-
 app.get('/home', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
 });
@@ -55,8 +53,7 @@ app.get('/messenger/read', async (request, response) => {
 
 app.post('/existingUser', async (request, response) => {
     try {
-        const res = await profdb.userExists(response, request.body);
-        response.send(JSON.stringify(res));
+        await profdb.userExists(response, request.body);
       } catch (err) {
         response.status(500).send(err);
     }

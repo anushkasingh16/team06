@@ -111,7 +111,6 @@ export class ProfileDatabase {
     }
 
     async createProfile(response, data) {
-
         // might not needs these if statements because of required in the profile.html when they sign up
         if(data["email"] === undefined){
             response.status(400).json(JSON.stringify({ error: `Email required` }));
@@ -120,14 +119,13 @@ export class ProfileDatabase {
         }else if(data["id"] === undefined){
             response.status(400).json(JSON.stringify({ error: `ID required` }));
         }else{
-            const res = await this.collection.find({email: data["email"]}, async function(err, col){
-                if(col.length === 0 && err){
-                    await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phone"], address: data["address"]});
-                    response.status(200).json(data);  
-                } else {
-                    response.status(400).json({ error: `Email In Use` });  
-                }
-            });
+            const res = await this.collection.find({email: data["email"]}).toArray();
+            if(res.length === 0){
+                await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phone"], address: data["address"]});
+                response.status(200).json(data);  
+            } else {
+                response.status(400).json({ error: `Email In Use` });  
+            }
         }
     }
 
@@ -137,14 +135,13 @@ export class ProfileDatabase {
     }
     
     async userExists(response, data) {
-        const res = await this.collection.find({email: data["email"]}, function(err, col){
-            if(col.length === 0 && err){
-                response.status(200).json({ exist: false });
-            } else {
-                response.status(200).json({ exist: true });                
-            }
-        });
-        return res;        
+        const res = await this.collection.find({email: data["email"]}).toArray();
+
+        if(res.length === 0){
+            response.status(200).json({ exist: false });
+        } else {
+            response.status(200).json({ exist: true });                
+        }     
     }    
   
   }

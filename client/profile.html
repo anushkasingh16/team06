@@ -19,7 +19,7 @@
                 </div>
                 <div class="dropdown-content">
                     <a href="home">Home</a>
-                    <a href="profile" class="profMenu">My Profile</a>
+                    <a href="profile" class="profMenu" id="profMenu">My Profile</a>
                     <a href="mybooks">My Textbook</a>
                     <a href="messenger">Messages</a>
                     <a href="/">Sign Out</a>
@@ -46,73 +46,47 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-lg-12">
-                    <div class="card menu">
-                        <div id="mlist" class="menu-list">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class = "menu-header"> Menu </div>
+                    <div class="profile">
+                        <div class="profile-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="profile-about">
+                                        <h1 class="m-b-0">My Profile</h1>
+                                    </div>
                                 </div>
                             </div>
-                            <ul class="list-unstyled m-list mt-2 mb-0">
-                                <li class="clearfix active">
-                                    <div class="about">
-                                        <div class="name">My Profile</div>                                           
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="about">
-                                        <div class="name">My Textbooks</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="about">
-                                        <div class="name">Messages</div>
-                                    </div>
-                                </li>                                    
-                            </ul>
                         </div>
-                        <div class="profile">
-                            <div class="profile-header clearfix">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="profile-about">
-                                            <h1 class="m-b-0">My Profile</h1>
-                                        </div>
+                        <div class="info">
+                            <ul class="m-b-0">
+                                <li>
+                                    <div class = "name">                                      
+                                        <h4 id="profName"><!--DOM Inserted Here--></h4>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <ul class="m-b-0">
-                                    <li>
-                                        <div class = "name">                                      
-                                            <h4 id="profName"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <div class = "email">
-                                            <h4 id="profEmail"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <div class = "spireID">
-                                            <h4 id="profID"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <hr>
-                                        <div class = "address">
-                                            <h4 id="profAddr"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <div class = "phone">
-                                            <h4 id="profPhone"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <hr>
-                                        <div class = "swaps">
-                                            <h4 id="profSwaps"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <div class = "listings">
-                                            <h4 id="profLists"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                        <div class = "rating">
-                                            <h4 id="profRating"><!--DOM Inserted Here--></h4>
-                                        </div>
-                                    </li>                         
-                                </ul>
-                            </div>
+                                    <div class = "email">
+                                        <h4 id="profEmail"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <div class = "spireID">
+                                        <h4 id="profID"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <hr>
+                                    <div class = "address">
+                                        <h4 id="profAddr"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <div class = "phone">
+                                        <h4 id="profPhone"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <hr>
+                                    <div class = "swaps">
+                                        <h4 id="profSwaps"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <div class = "listings">
+                                        <h4 id="profLists"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                    <div class = "rating">
+                                        <h4 id="profRating"><!--DOM Inserted Here--></h4>
+                                    </div>
+                                </li>                         
+                            </ul>
                         </div>
                     </div>
                 </div>
