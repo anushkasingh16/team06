@@ -41,10 +41,6 @@ function renderSent (element) {
     console.log(submitText());
 }
 
-function renderRecieve (element) { // opposite of renderSent?
-    console.log("recieved")
-}
-
 function submitText () { // event listener for submitted text
     return messagePlaceHolder.value;
 }

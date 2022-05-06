@@ -2,7 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import { createMessage, readMessages} from './messengercrud.js'
+import { MessengerDatabase } from './messengercrud.js'
 import { ProfileDatabase } from './profilecrud.js';
 import { storeBook, getBook, deleteBook } from './textbookcrud.js';
 
@@ -18,6 +18,9 @@ app.use('/', express.static('client'));
 
 const profdb = new ProfileDatabase(process.env.DATABASE_URL);
 await profdb.connect();
+
+const mdb = new MessengerDatabase(process.env.DATABASE_URL);
+await mdb.connect();
 
 
 
