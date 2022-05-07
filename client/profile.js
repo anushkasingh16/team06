@@ -9,9 +9,6 @@ const rating = document.getElementById("profRating");
 
 const menu = document.getElementById("profMenu");
 
-// swap.innerText = `Completed Swaps: ${userData["swaps"]}`;
-// list.innerText = `Current Lisitngs: ${userData["listings"]}`;
-// rating.innerText = `User Rating: ${userData["rating"]}`;
 
 const userEmail = "tviarengo@umass.edu"; // Hard Code user until we get login finished
 const userData = await getUser(userEmail);
