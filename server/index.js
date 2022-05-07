@@ -4,7 +4,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import { MessengerDatabase } from './messengercrud.js'
 import { ProfileDatabase } from './profilecrud.js';
-import { storeBook, getBook, deleteBook } from './textbookcrud.js';
+import { TextbookDatabase } from './textbookcrud.js';
 import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +22,9 @@ await profdb.connect();
 
 const mdb = new MessengerDatabase(process.env.DATABASE_URL);
 await mdb.connect();
+
+const textbookdb = new TextbookDatabase(process.env.DATABASE_URL);
+await textbookdb.connect();
 
 app.get('/home', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'home.html'));
@@ -82,16 +85,31 @@ app.post('/loginRequest', async (request, response) => {
     response.status(404).json(JSON.stringify({ error: `Not Implemented Yet` }));
 });
 
-app.post('/storeBook', async (request, response) => {
-    storeBook(request, response);
+app.post('/createBook', async (request, response) => {
+    try {
+        const res = await textbookdb.createBook(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.get('/getBook', async (request, response) => {
-    getBook(request, response);
+    try {
+        const res = await textbookdb.getBook(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.delete('/deleteBook', async (request, response) => {
-    deleteBook(request, response);
+    try {
+        const res = await textbookdb.deleteBook(response, request.body);
+        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.get('*', async (request, response) => {
