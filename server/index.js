@@ -64,8 +64,7 @@ app.post('/existingUser', async (request, response) => {
 
 app.post('/getUser', async (request, response) => {
     try {
-        const res = await profdb.readProfile(response, request.body);
-        response.send(JSON.stringify(res));
+        await profdb.readProfile(response, request.body);
       } catch (err) {
         response.status(500).send(err);
     }
@@ -74,9 +73,9 @@ app.post('/getUser', async (request, response) => {
 
 app.post('/registerNewUser', async (request, response) => {
     try {
-        const res = await profdb.createProfile(response, request.body);
-        response.send(JSON.stringify(res));
-      } catch (err) {
+        await profdb.createProfile(response, request.body);
+    } catch (err) {
+        console.log(err);
         response.status(500).send(err);
     }
 });
