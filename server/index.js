@@ -43,21 +43,32 @@ app.get('/messenger', async (request, response) => {
 });
 
 app.post('/messenger/create', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'messenger.html'));
-    createMessage(request, response);
+    try {
+        await mdb.createMessage(response, request.body);
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+    }
 });
+
+app.post('/messenger/read', async (request, response) => {
+    try {
+        await mdb.readMessages(response, request.body);
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+    }
+});
+
 app.get('/', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
-});
-app.get('/messenger/read', async (request, response) => {
-    response.sendFile("./client/messenger.html", {root: __dirname });
-    readMessages(request, response);
 });
 
 app.post('/existingUser', async (request, response) => {
     try {
         await profdb.userExists(response, request.body);
       } catch (err) {
+        console.log(err);
         response.status(500).send(err);
     }
 });
@@ -66,6 +77,7 @@ app.post('/getUser', async (request, response) => {
     try {
         await profdb.readProfile(response, request.body);
       } catch (err) {
+        console.log(err);
         response.status(500).send(err);
     }
     

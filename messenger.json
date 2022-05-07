@@ -1,3 +1,9 @@
 {
-    "Anushka/Helton": {"time": "Thursday @ 22:56:57", "from": "Anushka", "to": "Helton", "text": "Hello Helton, I sent your textbook via USPS and it will be arrive in 3-5 buisness days."}
+    "uuid":"e5263e54-8d98-4cf6-8021-9438a48e2483",
+    "interaction":"username1@gmail.com ~ username2@yahoo.com",
+    "time":"1651964525890",
+    "from":"Anushka Singh",
+    "to":"Helton Pongnon",
+    "text":"Hello!",
+    "image":""
 }
