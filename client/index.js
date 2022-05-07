@@ -34,9 +34,12 @@ async function signUpButton() {
 
         let userObj = {"email":email.value,"name":fullName.value,"id":spireID.value,"address":address.value,"phone":phoneNum.value,"swaps":0,"listings":0,"ratings":0};
 
-        await signUpUser(userObj);
-
-        location.href = "/home";
+        const res = await signUpUser(userObj);
+        if(res["error"] === 'Email In Use'){
+            alert("That email is already in use!");
+        }else{
+            location.href = "/home";
+        }
     }else{
         alert("You must fill out all required fields!");
     }

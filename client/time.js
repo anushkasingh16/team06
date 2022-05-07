@@ -29,3 +29,7 @@ export function time() {
     const time = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
     return time;
 }
+
+export function timestamp() {
+    return Date.now();
+}
