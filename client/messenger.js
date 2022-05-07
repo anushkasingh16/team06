@@ -9,7 +9,7 @@ let anuskha = document.getElementById("Anushka");
 let alan = document.getElementById("Alan");
 let header = document.getElementById("ChatHeader");
 let messagePage = document.getElementById("chatul");
-let submitButton = document.getElementById("send");;
+let submitButton = document.getElementById("send");
 let messagePlaceHolder = document.getElementById("messagePlaceHolder");
 
 function chatSwitch (element) {
