@@ -41,12 +41,12 @@
                   <h5 class="modal-title" id="exampleModalLabel">Sign Into Text Swap</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <form id="login-form">
+               <form action="/login" method="post" id="login-form">
                   <div class="modal-body">
                      <form>
                         <div class="mb-3">
                            <label for="exampleInputEmail1" class="form-label">E-mail address</label>
-                           <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
+                           <input type="text" class="form-control" id="email-id" aria-describedby="emailHelp" name="username">
                            <div id="emailhelper" class="form-text">Enter your .edu e-mail to verify you are a student.
                            </div>
                         </div>
@@ -77,11 +77,11 @@
                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="window.location.href='/'"
                   aria-label="Close"></button>
             </div>
-            <form id="signup-form">
+            <form id="signup-form" action="/register" method="post">
                <div class="modal-body">
                   <div class="mb-3">
                      <label for="emailInput" class="form-label">E-mail address</label>
-                     <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required>
+                     <input type="text" class="form-control" id="emailInput" name="username" aria-describedby="emailHelp" required>
                      <div id="emailhelper" class="form-text">Make sure to use a umass associated email address for
                         verification.</div>
                   </div>
@@ -91,7 +91,7 @@
                   </div>
                   <div class="mb-3">
                      <label for="passwordInput" class="form-label">Password</label>
-                     <input type="password" class="form-control" id="passwordInput" required>
+                     <input type="password" class="form-control" id="passwordInput" name="password" required>
                   </div>
                   <div class="mb-3">
                      <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
@@ -123,7 +123,7 @@
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                      onclick="window.location.href='/'">Close</button>
-                  <button type="button" class="btn btn-primary" id="btnSignUp">Sign Up</button>
+                  <input type="submit" value="Sign Up"/>
                </div>
             </form>
          </div>
