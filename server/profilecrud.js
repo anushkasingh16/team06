@@ -1,7 +1,5 @@
-
-
 import { MongoClient, ServerApiVersion } from 'mongodb';
-
+import {v4 as uuid} from 'uuid';
 
 export class ProfileDatabase {
 
@@ -42,9 +40,9 @@ export class ProfileDatabase {
         }else{
             const res = await this.collection.find({email: data["email"]}).toArray();
             if(res.length === 0){
-                await this.collection.insertOne({ _id:data["id"], email:data["email"], name:data["name"], number: data["phone"], address: data["address"], swaps: data["swaps"], listings: data["listings"], ratings: data["ratings"]});
-                const insertedDAta = await this.collection.findOne({email: data["email"]}).toArray();
-                response.status(200).json(insertedDAta);  
+                await this.collection.insertOne({ _id:uuid(), id:data["id"], email:data["email"], name:data["name"], phone: data["phone"], address: data["address"], swaps: data["swaps"], listings: data["listings"], ratings: data["ratings"]});
+                const insertedData = await this.collection.findOne({email: data["email"]});
+                response.status(200).json(insertedData);  
             } else {
                 response.status(400).json({ error: `Email In Use` });  
             }
@@ -52,7 +50,7 @@ export class ProfileDatabase {
     }
 
     async readProfile(response, data) {
-        const res = await this.collection.find({email: data["email"]});
+        const res = await this.collection.find({email: data["email"]}).toArray();
         response.status(200).json(res);              
     }
     
