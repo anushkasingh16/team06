@@ -16,9 +16,10 @@ const addbutton = document.getElementById("btn-add-listing");
 const deletebutton = document.getElementById("btn-delete-listing");
 
 
-addbutton.addEventListener('click', async (e) => {
+async function addingBook() {
     console.log("adding book");
     let book = {};
+    book["isbn"] = isbn.value;
     book["option"] = buy.value == ""? sell.value: buy.value;
     book["listlabel"] = listlabel.value; 
     book["title"] = title.value;
@@ -26,16 +27,16 @@ addbutton.addEventListener('click', async (e) => {
     book["author"] = author.value;
     book["edition"] = edition.value;
     book["transaction"] = trade.value == ""? sellamount.value: trade.value;
-    await fetch('/storeBook', {
+    await fetch('/createBook', {
         method: 'POST',
         header: {
             'Content-Type': 'application/json',
         },
         body: book,
     });
-});
+}
 
-deletebutton.addEventListener('click', async(e) => {
+async function deletingBook() {
     let book = {};
     book["isbn"] = isbn.value;
     console.log("deleting book")
@@ -46,9 +47,20 @@ deletebutton.addEventListener('click', async(e) => {
         method: 'DELETE',
         body: book,
     });
-});
+}
+
+async function gettingBook() {
+    const res = await fetch ('/getBook', {
+        method: 'POST',
+        body: {isbn: isbn.value}
+    })
+    return res.json();
+}
+
+addbutton.addEventListener('click', addingBook);
+deletebutton.addEventListener('click', deletingBook);
 
 
 
-
+//need to work on this
 

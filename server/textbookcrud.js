@@ -1,66 +1,50 @@
-import { readFile, writeFile } from 'fs/promises';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
-let library = [];
+export class TextbookDatabase {
 
-let JSONfile = 'textbook.json';
-
-async function load() {
-    try {
-        const data = await readFile(JSONfile, { encoding: 'utf8' });
-        library = JSON.parse(data);
-    } catch (err) {
-        library = [];
+    constructor(dburl) {
+      this.dburl = dburl;
     }
-}
-
-
-async function update() {
-    try {
-        const data = await JSON.stringify(library);
-        await writeFile(JSONfile, data, {encoding: 'utf8' });
-    } catch (err) {
-        console.log(err);
+  
+    async connect() {
+        this.client = await MongoClient.connect(this.dburl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverApi: ServerApiVersion.v1,
+        });
+  
+      // Get the database.
+        this.db = this.client.db('textswap');
+  
+      // Init the database.
+        await this.init();
     }
-}
-
-export async function storeBook(request, response) {
-    await load();
-    library.push(request.body);
-    update();
-    response.writeHead(200, { 'Content-Type': 'application/json'});
-    response.write(JSON.stringify(library));
-    response.end();  
-}
-
-export async function getBook(request, response) {
-    await load();
-    if (request.body in library) {
-        response.writeHead(200, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify(library));
-        response.end();  
-    } else {
-        response.writeHead(404, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify({error: "Book not found"}));
-        response.end();  
+  
+    async init() {
+        this.collection = this.db.collection('listings');
     }
-}
-
-export async function deleteBook(request, response) {
-    await load();
-    for(let i = 0; i < library.length; i++) {
-        if(library[i]["isbn"] === request.body["isbn"]) {
-            library.splice(i, 1);
-            update();
-            response.writeHead(200, { 'Content-Type': 'application/json'});
-            response.write(JSON.stringify(library));
-            response.end();  
-        }
+  
+    async close() {
+        this.client.close();
     }
 
-}
+    async createBook(response, data) {
+        //need to ccheck what values are optional and what are required
+        // edition and subtitle are optional
+        const res = await this.collection.insertOne({_id: data["isbn"], option: data["option"], listlabel: data["listlabel"], title: data["title"], subtitle: data["subtitle"],
+                                                     author: data["author"], edition: data["edition"], trade: data["trade"], sell: data["sell"], image: data["image"]});
+        response.status(200).json(res);
+    }
 
+    async getBook(response, data) {
+        const res = await this.collection.find({option: data["option"], _id: data["isbn"]});
+        response.status(200).json(res); 
+    }
 
-
-
-
-
+    async deleteBook(response, data) {
+        const res = await this.collection.remove({option: data["option"], _id: data["isbn"]});
+        response.status(200).json(res); 
+    }
+       
+  
+  }
