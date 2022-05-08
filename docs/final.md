@@ -17,6 +17,12 @@ Helton Pongnon - https://github.com/HeltonP
 
 ## Overview
 
+Text Swap is meant to be a platform that allows students to swap textbooks or buy them from other students. The goal of Text Swap is to allow students to stay on budget while also making sure that books are sourced more sustainably by college students.
+
+The novelty of Text Swap lies in the fact that it is meant to be a college bookstore that tries to incorporate the ideas of borrowing and sharing amongst students.
+
+It is also built exclusively for students and only allows them to log in and it also allows students to message each other to set up their textswaps.
+
 ## User Interface
 
 Our UI is focused on some basic principles of user experience and design, primarily the following:
@@ -43,20 +49,15 @@ Some screenshots of our project are as follows:
 
 ### At the **home page**, there are a few componets that build up our user interface. The features are listed as follows:
 
-#### User Profile 
-<img src="https://github.com/anushkasingh16/team06/blob/main/docs/wireframes/Wireframes-Profile.png">
-
-#### Messages (For interacting with other users you want to sell/swap books with.)
-<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/messages.jpg">
-
-
-#### NewListing (Allows you to add new books to **MyTextbooks**.)
-<img src="https://github.com/anushkasingh16/team06/blob/781551953035a2485906535a3017950914ffc0a7/docs/screenshots/newlisting.jpg">
 
 
 ## APIs
 
 ## Database
+
+We make use of MONGODB extensively. OUr goal was to have databases that are very simple to use and cohesive in their implementation. 
+
+In our database, each collection is just an array of javascript objects that store data about either a message sent, a textbook listing or a user. The user database contains information like your email, and address, the message database contains all the messages sent between users, and the listings database holds information like the book's ISBN, author and title.
 
 ## URL Routes/Mappings
 
