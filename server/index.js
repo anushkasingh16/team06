@@ -51,11 +51,12 @@ app.post('/login', auth.authenticate('local',{
 app.post('/register', (req,res) =>{
     const{ username, password} = req.body;
     if(users.addUser(username,password)){
-        res.redirect('/');
+        res.redirect('/home');
     }else{
-        res.redirect('/register');
+        res.redirect('/');
     }
 });
+
 const profdb = new ProfileDatabase(process.env.DATABASE_URL);
 await profdb.connect();
 
