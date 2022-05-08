@@ -83,21 +83,21 @@ In our database, each collection is just an array of javascript objects that sto
 ## URL Routes/Mappings
 
 Endpoint Mapping
-/ - Login Page
-/home - Home Page after login
-/mybooks - The Page for your textbooks
-/profile - Info about your profile
-/messenger - The Messenger page
-/messenger/create - creates a new message
-/messenger/read - gets all the messages between two users
-/existingUser - checks if a user exists
-/getUser - gets a user's database
-/registerNewUser - creates a new user
-/loginRequest - handles login
-/createBook - makes a new listing
-/getBook - gets a listing
-/getAllBooks - gets all listings
-/deleteBook - deletes a listing
+* / - Login Page
+* /home - Home Page after login
+* /mybooks - The Page for your textbooks
+* /profile - Info about your profile
+* /messenger - The Messenger page
+* /messenger/create - creates a new message
+* /messenger/read - gets all the messages between two users
+* /existingUser - checks if a user exists
+* /getUser - gets a user's database
+* /registerNewUser - creates a new user
+* /loginRequest - handles login
+* /createBook - makes a new listing
+* /getBook - gets a listing
+* /getAllBooks - gets all listings
+* /deleteBook - deletes a listing
 
 ## Authentication/Authorization
 
