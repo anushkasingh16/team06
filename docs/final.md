@@ -172,14 +172,14 @@ Milestone 1:
 Milestone 2:
 
 * CRUD operations for Textbook Listing 
-* CRUD oeprations for Profiles
+* CRUD operations for Profiles
 
 Milestone 3 / Final:
 
-* Created Presentation for Video Demo 
-* Documentation for the milestone
-* Deployment and final route checks for express
-* Authorization and Sign Up
+* Helped create the databases for user profiles
+* Listing of books page and form work 
+* Integrating the above with MongoDB
+* Debugging for profile and listing operations
 
 ### Helton Pongnon 
 
