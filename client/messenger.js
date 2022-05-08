@@ -11,6 +11,8 @@ let header = document.getElementById("ChatHeader");
 let messagePage = document.getElementById("chatul");
 let submitButton = document.getElementById("send");
 let messagePlaceHolder = document.getElementById("messagePlaceHolder");
+let users = {User1: {name: "Anushka", email: "anusingh@umass.edu"},
+             User2: {name: "Helton", email: "hpongnon@umass.edu"}};
 
 function chatSwitch (element) {
     header.innerHTML = element.id;
@@ -56,7 +58,7 @@ async function sendMessage(element){
         },
         // TODO: Interaction is left blank for now, this should be in the format of '<user 1 email> ~ <user 2 email>' where the 2 emails are sorted alphabetically
         // TODO: From and to is left blank for now, this should be the name of the two individuals messaging. Use the profile db to get this info.
-        body: JSON.stringify({interaction:"",time:timestamp(),from:"",to:"",text:text,image:""})
+        body: JSON.stringify({interaction: users[0][1] + "~" + users[1][1] ,time:timestamp(),from:users[0][0],to:users[1][0],text:text,image:""})
     });
     const data = await response.json();
     await renderMessages();
@@ -72,7 +74,7 @@ async function renderMessages(){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({interaction:""}) // TODO replace blank interaction id
+        body: JSON.stringify({interaction:users[0][1] + "~" + users[1][1]}) // TODO replace blank interaction id
     });
     const data = await response.json();
     // Data is an array of message objects with the specified interaction id.
