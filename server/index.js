@@ -87,14 +87,14 @@ app.post('/loginRequest', async (request, response) => {
 
 app.post('/createBook', async (request, response) => {
     try {
-        const res = await textbookdb.createBook(response, request.body);
-        response.send(JSON.stringify(res));
+        console.log(request.body, "index");
+        await textbookdb.createBook(response, request.body);
       } catch (err) {
         response.status(500).send(err);
     }
 });
 
-app.get('/getBook', async (request, response) => {
+app.post('/getBook', async (request, response) => {
     try {
         const res = await textbookdb.getBook(response, request.body);
         response.send(JSON.stringify(res));
@@ -103,8 +103,9 @@ app.get('/getBook', async (request, response) => {
     }
 });
 
-app.delete('/deleteBook', async (request, response) => {
+app.post('/deleteBook', async (request, response) => {
     try {
+        console.log(request.body);
         const res = await textbookdb.deleteBook(response, request.body);
         response.send(JSON.stringify(res));
       } catch (err) {

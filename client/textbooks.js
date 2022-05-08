@@ -14,11 +14,14 @@ const toSell = document.getElementById("btn-to-sell");
 const sellAmt = document.getElementById("input-sell-amt");
 
 
+
 btnAdd.addEventListener("click", addNewTextbook);
 buyOption.addEventListener("click", setFormBuy);
 sellOption.addEventListener("click", setFormSell);
 toTrade.addEventListener("click", ()=>{toggleButton(toTrade);});
 toSell.addEventListener("click", ()=>{toggleButton(toSell);});
+buyOption.addEventListener("click", ()=>{toggleButton(buyOption);});
+sellOption.addEventListener("click", ()=>{toggleButton(sellOption);});
 
 // For some unknown reason my textbook js code didnt make it into the milestone 1 submission despite being on my branch when the code was merged, I have re-added it here.  ~ Tyler
 function toggleButton(elem){

@@ -10,57 +10,65 @@ const trade = document.getElementById("btn-to-trade");
 const lsell = document.getElementById("btn-to-sell");
 const sellamount = document.getElementById("input-sell-amt");
 const imageUpload = document.getElementById("image-upload");
-
+const deleteisbn = document.getElementById("delete-input-isbn");
 
 const addbutton = document.getElementById("btn-add-listing");
 const deletebutton = document.getElementById("btn-delete-listing");
-
+addbutton.addEventListener('click', addingBook);
+deletebutton.addEventListener('click', deletingBook);
 
 async function addingBook() {
     console.log("adding book");
     let book = {};
     book["isbn"] = isbn.value;
-    book["option"] = buy.value == ""? sell.value: buy.value;
+    book["option"] = buy.value === "on"? "buy": "sell";
     book["listlabel"] = listlabel.value; 
     book["title"] = title.value;
     book["subtitle"] = subtitle.value;
     book["author"] = author.value;
     book["edition"] = edition.value;
-    book["transaction"] = trade.value == ""? sellamount.value: trade.value;
+    book["transaction"] = trade.value === "on"? "trade" : "money";
     await fetch('/createBook', {
         method: 'POST',
-        header: {
-            'Content-Type': 'application/json',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: book,
+        body: JSON.stringify(book),
     });
 }
 
+
 async function deletingBook() {
     let book = {};
-    book["isbn"] = isbn.value;
+    book["isbn"] = deleteisbn.value;
     console.log("deleting book")
     let modal = bootstrap.Modal.getInstance(document.getElementById("deleteTextbookModal"),{});
     document.querySelectorAll('.modal-backdrop').forEach(backdrop =>{backdrop.remove();});
     modal.hide();
     await fetch('/deleteBook', {
-        method: 'DELETE',
-        body: book,
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(book),
     });
 }
 
+
+// need to change isbn.value
 async function gettingBook() {
     const res = await fetch ('/getBook', {
         method: 'POST',
-        body: {isbn: isbn.value}
+        body: JSON.stringify({isbn: isbn.value})
     })
     return res.json();
 }
 
-addbutton.addEventListener('click', addingBook);
-deletebutton.addEventListener('click', deletingBook);
 
 
 
-//need to work on this
+
+
 
