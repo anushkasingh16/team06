@@ -9,7 +9,6 @@ const rating = document.getElementById("profRating");
 
 const menu = document.getElementById("profMenu");
 
-
 const userEmail = "tviarengo@umass.edu"; // Hard Code user until we get login finished
 const userData = (await getUser(userEmail))[0];
 console.log(userData);
@@ -36,10 +35,3 @@ async function getUser(email){
     const data = await response.json();
     return data;
 }
-
-
-
-
-
-
-

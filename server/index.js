@@ -1,21 +1,61 @@
 import express from 'express';
 import logger from 'morgan';
 import path from 'path';
+import expressSession from 'express-session';
 import {fileURLToPath} from 'url';
 import { MessengerDatabase } from './messengercrud.js'
 import { ProfileDatabase } from './profilecrud.js';
 import { TextbookDatabase } from './textbookcrud.js';
 import 'dotenv/config';
+import { dirname } from 'path';
+import auth from './auth.js';
+import users from './users.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
+const sessionConfig = {
+    secret: process.env.SECRET || 'SECRET',
+    resave: false,
+    saveUninitialized: false
+};
+app.use(expressSession(sessionConfig));
+
 app.use(logger('dev'));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/', express.static('client'));
+
+auth.configure(app);
+
+function checkLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect('/');
+    }
+}
+app.get('/', checkLoggedIn, (req,res) => {
+    res.redirect('/home');
+});
+app.post('/login', auth.authenticate('local',{
+    successRedirect: '/home',
+    failureRedirect: '/'
+    })
+);
+app.post('/register', (req,res) =>{
+    const{ username, password} = req.body;
+    if(users.addUser(username,password)){
+        res.redirect('/home');
+    }else{
+        res.redirect('/');
+    }
+});
 
 const profdb = new ProfileDatabase(process.env.DATABASE_URL);
 await profdb.connect();
@@ -43,21 +83,32 @@ app.get('/messenger', async (request, response) => {
 });
 
 app.post('/messenger/create', async (request, response) => {
-    response.sendFile(path.join(__dirname,'..', 'client', 'messenger.html'));
-    createMessage(request, response);
+    try {
+        await mdb.createMessage(response, request.body);
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+    }
 });
+
+app.post('/messenger/read', async (request, response) => {
+    try {
+        await mdb.readMessages(response, request.body);
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+    }
+});
+
 app.get('/', async (request, response) => {
     response.sendFile(path.join(__dirname,'..', 'client', 'index.html'));
-});
-app.get('/messenger/read', async (request, response) => {
-    response.sendFile("./client/messenger.html", {root: __dirname });
-    readMessages(request, response);
 });
 
 app.post('/existingUser', async (request, response) => {
     try {
         await profdb.userExists(response, request.body);
       } catch (err) {
+        console.log(err);
         response.status(500).send(err);
     }
 });
@@ -66,6 +117,7 @@ app.post('/getUser', async (request, response) => {
     try {
         await profdb.readProfile(response, request.body);
       } catch (err) {
+        console.log(err);
         response.status(500).send(err);
     }
     
