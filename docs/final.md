@@ -101,6 +101,8 @@ Endpoint Mapping
 
 ## Authentication/Authorization
 
+We used the passport npm package and also made use of POST/GET operations in our client side library to implement this. The future goal is to work on this more and refine it such that we can have a MongoDB user database set up for authentication.
+
 ## Final Rubric
 
 Our rubric to judge our work is as follows:
@@ -160,6 +162,25 @@ Milestone 3 / Final:
 * Deployment and final route checks for express
 * Authorization and Sign Up
 
+### Alan Zheng
+
+Milestone 1:
+
+* Made the Home Page
+* Made the Login
+
+Milestone 2:
+
+* CRUD operations for Textbook Listing 
+* CRUD oeprations for Profiles
+
+Milestone 3 / Final:
+
+* Created Presentation for Video Demo 
+* Documentation for the milestone
+* Deployment and final route checks for express
+* Authorization and Sign Up
+
 ### Helton Pongnon 
 
 Milestone 1:
@@ -171,7 +192,9 @@ Milestone 2:
 * Messenger API/associated HTML 
 
 Milestone 3 / Final:
-* 
+* Worked on Messenger Database and UI 
+* Worked on the chat display page
+* Helped build the messaging response api system
 
 ## Conclusion
 
