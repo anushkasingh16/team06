@@ -6,9 +6,12 @@
 * Semester: Spring 2022
 
 * Team Members: 
-Tyler Viarengo - https://github.com/borisshoes 
-Alan Zheng - https://github.com/alan3737
-Anushka Singh - https://github.com/anushkasingh16
+Tyler Viarengo - https://github.com/borisshoes ,
+
+Alan Zheng - https://github.com/alan3737,
+
+Anushka Singh - https://github.com/anushkasingh16,
+
 Helton Pongnon - https://github.com/HeltonP
 
 ## User Interface
