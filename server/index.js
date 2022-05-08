@@ -149,7 +149,14 @@ app.post('/createBook', async (request, response) => {
 app.post('/getBook', async (request, response) => {
     try {
         const res = await textbookdb.getBook(response, request.body);
-        response.send(JSON.stringify(res));
+      } catch (err) {
+        response.status(500).send(err);
+    }
+});
+
+app.get('/getAllBooks', async (request, response) => {
+    try {
+        const res = await textbookdb.getAllBooks(response, request);
       } catch (err) {
         response.status(500).send(err);
     }
@@ -157,9 +164,7 @@ app.post('/getBook', async (request, response) => {
 
 app.post('/deleteBook', async (request, response) => {
     try {
-        console.log(request.body);
         const res = await textbookdb.deleteBook(response, request.body);
-        response.send(JSON.stringify(res));
       } catch (err) {
         response.status(500).send(err);
     }

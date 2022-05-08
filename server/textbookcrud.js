@@ -39,6 +39,11 @@ export class TextbookDatabase {
         response.status(200).json(res); 
     }
 
+    async getAllBooks(response, data){
+        const res = await this.collection.find({}).toArray();
+        response.status(200).json(res); 
+    }
+
     async deleteBook(response, data) {
         const res = await this.collection.remove({ _id: data["isbn"]});
         response.status(200).json(res); 
